@@ -16,8 +16,8 @@ const Navbar = () => {
             <div className='flex justify-between items-center p-1 max-w-7xl mx-auto text-black'>
                 <Image alt="Logo" src={'/Trackerify.svg'} width={230} height={60}/>
                 <div className='flex gap-4'>
-                    <FaLinkedin size={30} className="hover:text-income duration-300 cursor-pointer"/>
-                    <FaGithub size={30} className="hover:text-income duration-300 cursor-pointer"/>
+                    <a href="https://linkedin.com/in/harmeetsinghdhanjal" target="__"><FaLinkedin size={30} className="hover:text-income duration-300 cursor-pointer"/></a>
+                    <a href="https://github.com/Harmeet03" target="__"><FaGithub size={30} className="hover:text-income duration-300 cursor-pointer"/></a>
                 </div>
             </div>
             <div className="bg-background text-foreground font-inter flex justify-center border-b-1 text-xs gap-8">
