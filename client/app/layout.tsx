@@ -19,6 +19,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://trackerify.vercel.app"),
+
   title: {
     default: "Track your expenses | Trackerify",
     template: "%s | Trackerify"
