@@ -69,6 +69,8 @@ const TransactionModal = ({setTransactions}: Props) => {
                   <option value="Gaming"> Gaming </option>
                   <option value="Clothing"> Clothing </option>
                   <option value="Gadgets"> Gadgets </option>
+                  <option value="Gurudwara"> Gurudwara </option>
+                  <option value="Miscellaneous"> Miscellaneous </option>
                 </select>
 
                 {
