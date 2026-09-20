@@ -24,7 +24,7 @@ const TransactionModal = ({setTransactions}: Props) => {
             type: active,
             amount: Number(formData.get('amount')),
             category: String(formData.get('category')),
-            month: now.toLocaleString('default', { month: 'long',  year: "numeric", }),
+            month: now.toLocaleString('default', { day: 'numeric', month: 'long', year: "numeric" }),
             date: now.toISOString().split('T')[0]
         }
 
