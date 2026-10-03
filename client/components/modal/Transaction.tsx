@@ -7,9 +7,10 @@ import { Transaction } from "@/types/transactions";
 
 interface Props {
   setTransactions: React.Dispatch<React.SetStateAction<Transaction[]>>
+  closeModal: () => void
 }
 
-const TransactionModal = ({setTransactions}: Props) => {
+const TransactionModal = ({setTransactions, closeModal}: Props) => {
     const [active, setActive] = useState<'Income' | 'Expense'>('Income');
     const [alert, setAlert] = useState<string>('');
 
@@ -37,11 +38,14 @@ const TransactionModal = ({setTransactions}: Props) => {
           setTimeout(() => {
             setAlert('');
           }, 3000);
-          
           return;
         }
 
         setTransactions(prev => [...prev, transaction]);
+
+        setTimeout(() => {
+          closeModal();
+        }, 500);
 
         e.currentTarget.reset();
     }

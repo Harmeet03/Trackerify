@@ -20,6 +20,7 @@ export default function Home() {
 
   const [openModal, setOpenModal] = useState(false);
   const [mounted, setMounted] = useState(false)
+  const [isSuccess, setIsSuccess] = useState(false)
 
   const [transactions, setTransactions] = useLocalStorage<Transaction[]>('transactions', [])
 
@@ -31,7 +32,7 @@ export default function Home() {
     window.document.body.style.overflow = openModal ? 'hidden' : 'auto';
   }, [openModal])
 
-  const handleOpenModal = () => {
+  const toggleOpenModal = () => {
     setOpenModal(!openModal);
   }
 
@@ -81,7 +82,7 @@ export default function Home() {
 
       <ExpenseChart transactions={transactions} month={currentMonth}/>
 
-      <div onClick={() => handleOpenModal()} className='z-40 cursor-pointer fixed border py-2 px-1 rounded-lg border-foreground text-foreground bg-background bottom-16 right-4'>
+      <div onClick={() => toggleOpenModal()} className='z-40 cursor-pointer fixed border py-2 px-1 rounded-lg border-foreground text-foreground bg-background bottom-16 right-4'>
         {
           openModal ? (
             <span className="text-xs flex items-center gap-1"> <Minus size={12}/> Close </span>
@@ -94,7 +95,7 @@ export default function Home() {
       {
         openModal && (
           <div className='fixed inset-0 bg-black/50 backdrop-blur-sm z-10'>
-            <TransactionModal setTransactions={setTransactions}/>
+            <TransactionModal setTransactions={setTransactions} closeModal={toggleOpenModal}/>
           </div>
         )
       }
