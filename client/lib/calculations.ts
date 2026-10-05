@@ -31,7 +31,6 @@ export const getCurrentMonth = () => {
     const now = new Date()
 
     const month = now.toLocaleString('default', {
-        day: 'numeric',
         month: 'long',
         year: 'numeric'
     })
@@ -45,7 +44,6 @@ export const getPreviousMonth = () => {
     previousDate.setMonth(previousDate.getMonth() - 1)
 
     const month = previousDate.toLocaleString('default', {
-        day: 'numeric',
         month: 'long',
         year: 'numeric'
     })

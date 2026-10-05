@@ -14,6 +14,7 @@ const Transactions = () => {
 
     const [search, setSearch] = useState('')
     const [typeFilter, setTypeFilter] = useState<'All' | 'Income' | 'Expense'>('All')
+    const [categoryFilter, setCategoryFilter] = useState('category')
 
     useEffect(() => {
         setMounted(true)
@@ -31,11 +32,13 @@ const Transactions = () => {
 
     const filteredTransactions = transactions.filter((t) => {
         const matchesType = typeFilter === 'All' || t.type === typeFilter
+        const matchesCategory = categoryFilter === 'category' || t.category === categoryFilter
         const matchesSearch = `${t.category} ${t.month} ${t.amount} ${t.date}`.toLowerCase().includes(search.toLowerCase())
 
         return(
             matchesType &&
-            matchesSearch 
+            matchesSearch &&
+            matchesCategory
         )
     })
 
@@ -53,6 +56,20 @@ const Transactions = () => {
                     <option value='All'> All types </option>
                     <option value='Income'> Income </option>
                     <option value='Expense'> Expense </option>
+                </select>
+
+                <select value={categoryFilter} onChange={(e) => setCategoryFilter(e.target.value)} name="category" className="border border-foreground/50 bg-background rounded-lg px-4 py-2">
+                  <option value="category">Select Category</option>
+                  <option value="Food"> Food </option>
+                  <option value="Transport"> Transport </option>
+                  <option value="Entertainment"> Entertainment </option>
+                  <option value="Salary"> Salary </option>
+                  <option value="Investment"> Investment </option>
+                  <option value="Gaming"> Gaming </option>
+                  <option value="Clothing"> Clothing </option>
+                  <option value="Gadgets"> Gadgets </option>
+                  <option value="Gurudwara"> Gurudwara </option>
+                  <option value="Miscellaneous"> Miscellaneous </option>
                 </select>
             </div>
 
@@ -78,7 +95,7 @@ const Transactions = () => {
                                                 {t.type === 'Income' ? <Plus size={14}/> : <Minus size={14}/>}₹{t.amount} 
                                             </td>
                                             <td className="px-4 py-2"> {t.category} </td>
-                                            <td className="px-4 py-2"> {t.month} </td>
+                                            <td className="px-4 py-2"> {t.date} {t.month} </td>
                                             <td className="px-4 py-2 flex text-expense"> <span onClick={() => handleDelete(t.id)} className="border p-1 rounded-lg flex items-center gap-1 bg-expense/10 cursor-pointer"> <Delete size={16}/> Delete </span> </td>
                                         </tr>
                                     ))

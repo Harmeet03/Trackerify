@@ -20,7 +20,6 @@ export default function Home() {
 
   const [openModal, setOpenModal] = useState(false);
   const [mounted, setMounted] = useState(false)
-  const [isSuccess, setIsSuccess] = useState(false)
 
   const [transactions, setTransactions] = useLocalStorage<Transaction[]>('transactions', [])
 

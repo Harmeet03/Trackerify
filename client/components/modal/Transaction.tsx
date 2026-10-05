@@ -25,8 +25,8 @@ const TransactionModal = ({setTransactions, closeModal}: Props) => {
             type: active,
             amount: Number(formData.get('amount')),
             category: String(formData.get('category')),
-            month: now.toLocaleString('default', { day: 'numeric', month: 'long', year: "numeric" }),
-            date: now.toISOString().split('T')[0]
+            month: now.toLocaleString('default', { month: 'long', year: "numeric" }),
+            date: String(now.getDate()).padStart(2, '0')
         }
 
         const amount = transaction.amount;
