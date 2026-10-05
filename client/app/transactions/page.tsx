@@ -49,8 +49,8 @@ const Transactions = () => {
                 <p className="text-foreground/50"> Manage and review all your financial records </p>
             </div>
 
-            <div className="flex items-center w-full justify-center gap-4">
-                <input value={search} onChange={(e) => setSearch(e.target.value)} type="textbox" placeholder="Search transactions..." className="w-1/2 border border-foreground/50 bg-background rounded-lg px-4 py-2"/>
+            <div className="grid grid-cols-2 sm:grid-cols-3 items-center w-full justify-center gap-4">
+                <input value={search} onChange={(e) => setSearch(e.target.value)} type="textbox" placeholder="Search transactions..." className="w-full border border-foreground/50 bg-background rounded-lg px-4 py-2"/>
 
                 <select value={typeFilter} onChange={(e) => setTypeFilter(e.target.value as 'All' | 'Income' | 'Expense')} name="types" className="border border-foreground/50 bg-background rounded-lg px-4 py-2">
                     <option value='All'> All types </option>
@@ -58,7 +58,7 @@ const Transactions = () => {
                     <option value='Expense'> Expense </option>
                 </select>
 
-                <select value={categoryFilter} onChange={(e) => setCategoryFilter(e.target.value)} name="category" className="border border-foreground/50 bg-background rounded-lg px-4 py-2">
+                <select value={categoryFilter} onChange={(e) => setCategoryFilter(e.target.value)} name="category" className="col-span-2 sm:col-span-1 border border-foreground/50 bg-background rounded-lg px-4 py-2">
                   <option value="category">Select Category</option>
                   <option value="Food"> Food </option>
                   <option value="Transport"> Transport </option>
@@ -79,24 +79,24 @@ const Transactions = () => {
                         <table className="min-w-full border">
                             <thead className="border">
                                 <tr>
-                                    <th className="text-left px-4 py-2"> TYPE </th>
-                                    <th className="text-left px-4 py-2"> AMOUNT </th>
-                                    <th className="text-left px-4 py-2"> CATEGORY </th>
-                                    <th className="text-left px-4 py-2"> MONTH </th>
-                                    <th className="text-left px-4 py-2"> ACTIONS </th>
+                                    {/* <th className="text-left px-4 py-2 w-2"> TYPE </th> */}
+                                    <th className="text-left px-4 py-2 text-xs"> AMOUNT </th>
+                                    <th className="text-left px-4 py-2 text-xs"> CATEGORY </th>
+                                    <th className="text-left px-4 py-2 text-xs"> MONTH </th>
+                                    <th className="text-left px-4 py-2 text-xs"> ACTIONS </th>
                                 </tr>
                             </thead>
                             <tbody>
                                 {
                                     filteredTransactions.reverse().map((t) => (
                                         <tr key={t.id} className="border-t">
-                                            <td className={`px-4 py-2 ${t.type === 'Income' ? 'text-income bg-income/10' : 'text-expense bg-expense/10'}`}> {t.type} </td>
-                                            <td className={`px-4 py-2 flex items-center ${t.type === 'Income' ? 'text-income' : 'text-expense'}`}> 
-                                                {t.type === 'Income' ? <Plus size={14}/> : <Minus size={14}/>}₹{t.amount} 
+                                            {/* <td className={`px-4 py-2 ${t.type === 'Income' ? 'text-income bg-income/10' : 'text-expense bg-expense/10'}`}> {t.type} </td> */}
+                                            <td className={`px-4 py-2 flex items-center text-xs ${t.type === 'Income' ? 'text-income' : 'text-expense'}`}> 
+                                                {t.type === 'Income' ? <Plus size={12}/> : <Minus size={12}/>}₹{t.amount} 
                                             </td>
-                                            <td className="px-4 py-2"> {t.category} </td>
-                                            <td className="px-4 py-2"> {t.date} {t.month} </td>
-                                            <td className="px-4 py-2 flex text-expense"> <span onClick={() => handleDelete(t.id)} className="border p-1 rounded-lg flex items-center gap-1 bg-expense/10 cursor-pointer"> <Delete size={16}/> Delete </span> </td>
+                                            <td className="px-4 py-2 text-xs"> {t.category} </td>
+                                            <td className="px-4 py-2 text-xs"> {t.date} {t.month} </td>
+                                            <td className="px-4 py-2 flex text-expense text-xs"> <span onClick={() => handleDelete(t.id)} className="border p-1 rounded-lg flex items-center gap-1 bg-expense/10 cursor-pointer"> <Delete size={16}/> Delete </span> </td>
                                         </tr>
                                     ))
                                 }
